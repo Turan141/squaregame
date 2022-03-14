@@ -4,13 +4,44 @@
   margin: 0;
 }
 
+.App {
+  background-color: #88B04B;
+  height: 755px;
+}
 .Container {
   display: flex;
+  position: relative;
   justify-content: center;
   width: 700px;
   height: 700px;
   flex-direction: column;
   align-items: center;
+  
+}
+
+.SetUpMenu {
+  padding: 5px;
+}
+.SetUpMenu select {
+  padding: 10px;
+  font-size: 1.2rem;
+}
+.SetUpMenu p {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.SetUpMenu button {
+  margin: 10px;
+  padding: 15px;
+  width: 150px;
+  border: none;
+  font-size: 1.2rem;
+}
+.SetUpMenu button:hover {
+  background-color: green;
+  transition: 1s ease;
 }
 .Board {
   display: grid;
@@ -25,9 +56,11 @@
 
 .cell {
   display: inline-block;
+  background-color: white;
   flex-wrap: wrap;
   border: 3px solid black;
-  transition: 0.5s ease;
+  transition: 1s ease;
+  transform: rotateY(180deg);
 }
 
 .blueCell {
@@ -36,5 +69,15 @@
   flex-wrap: wrap;
   border: 3px solid black;
   transition: 0.5s ease;
-  background-color: blue;
+  background-color: #34568B;
+}
+
+.Hover {
+  position: absolute;
+  width: 250px;
+  height: 80%;
+  border: 2px solid black;
+  left: 100%;
+  top: 20%;
+  margin-left: 20px;
 }

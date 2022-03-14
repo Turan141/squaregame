@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Table = () => {
   return (
@@ -9,13 +9,13 @@ const Table = () => {
   )
 }
 
-const Cell = () => {
+const Cell = ({ curRow, curColumn }) => {
   const [isBlue, setBlue] = useState(false)
   return (
     <div
       className={!isBlue ? 'cell' : 'blueCell'}
-      onMouseOver={(e) => {
-        console.log(e)
+      onMouseOver={() => {
+        console.log(curRow, curColumn)
         isBlue ? setBlue(false) : setBlue(true)
       }}
     ></div>
@@ -23,10 +23,22 @@ const Cell = () => {
 }
 
 const Board = ({ difficulty }) => {
+  let curRow = 1
+  let curColumn = 1
   const cellArray = []
-  for (let i = 0; i < Math.pow(difficulty, 2); i++) {
-    cellArray.push(<Cell />)
+  const cellsQty = Math.pow(difficulty, 2)
+  for (let i = 0; i < cellsQty; i++) {
+    cellArray.push(<Cell curRow={curRow} curColumn={curColumn} />)
+    curColumn++
+    if (curColumn > difficulty) {
+      curRow++
+      curColumn = 1
+    }
   }
+  if (curColumn === difficulty) {
+    curRow++
+  }
+
   const renderCells = cellArray.map((elem) => {
     return elem
   })
