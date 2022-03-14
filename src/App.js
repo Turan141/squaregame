@@ -14,7 +14,8 @@ const Cell = () => {
   return (
     <div
       className={!isBlue ? 'cell' : 'blueCell'}
-      onMouseOver={() => {
+      onMouseOver={(e) => {
+        console.log(e)
         isBlue ? setBlue(false) : setBlue(true)
       }}
     ></div>
@@ -29,7 +30,14 @@ const Board = ({ difficulty }) => {
   const renderCells = cellArray.map((elem) => {
     return elem
   })
-  return <div className="Board">{renderCells}</div>
+  return (
+    <div
+      className="Board"
+      style={{ gridTemplateColumns: `repeat(${difficulty}, 1fr)` }}
+    >
+      {renderCells}
+    </div>
+  )
 }
 
 const SetUpMenu = ({ difficultyFetch, setDifficulty, difficulty }) => {
