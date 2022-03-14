@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  height: 600px;
+  width: 600px;
+  flex-direction: column;
+  align-items: center;
+}
+.Board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  border: black 1px solid;
+  transition: 0.5s ease;
+
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  min-height: 25%;
+  min-width: 20%;
+  transition: 0.5s ease;
+
+}
+
+.blueCell {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  min-height: 25%;
+  min-width: 20%;
+  background-color: blue;
+  transition: 0.5s ease;
+
+}
