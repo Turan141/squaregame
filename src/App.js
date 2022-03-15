@@ -1,46 +1,51 @@
 import './App.css'
 import React, { useEffect, useState } from 'react'
 
-const Table = () => {
+const Table = ({ coords }) => {
   return (
     <div className="Hover">
-      <h3>Table</h3>
+      <h1>Changed:</h1>
+      <h2>
+        Cell Row is: {coords.row}
+        <br /> Cell Column is: {coords.col}
+      </h2>
     </div>
   )
 }
 
-const Cell = ({ curRow, curColumn }) => {
+const Cell = ({ curRow, curColumn, setCoords }) => {
   const [isBlue, setBlue] = useState(false)
   return (
     <div
       className={!isBlue ? 'cell' : 'blueCell'}
       onMouseOver={() => {
-        console.log(curRow, curColumn)
         isBlue ? setBlue(false) : setBlue(true)
+        setCoords({ row: curRow, col: curColumn })
       }}
     ></div>
   )
 }
 
-const Board = ({ difficulty }) => {
+const Board = ({ difficulty, setCoords }) => {
   let curRow = 1
   let curColumn = 1
   const cellArray = []
   const cellsQty = Math.pow(difficulty, 2)
   for (let i = 0; i < cellsQty; i++) {
-    cellArray.push(<Cell curRow={curRow} curColumn={curColumn} />)
+    cellArray.push(
+      <Cell key={i} curRow={curRow} curColumn={curColumn} setCoords={setCoords} />
+    )
     curColumn++
     if (curColumn > difficulty) {
       curRow++
       curColumn = 1
     }
   }
-  if (curColumn === difficulty) {
-    curRow++
-  }
 
   const renderCells = cellArray.map((elem) => {
-    return elem
+    return (
+      elem
+      )
   })
   return (
     <div
@@ -55,9 +60,7 @@ const Board = ({ difficulty }) => {
 const SetUpMenu = ({ difficultyFetch, setDifficulty, difficulty }) => {
   const showCellsChooser = difficultyFetch.map((elem) => {
     return (
-      <>
-        <option value={elem.field}>{elem.name}</option>
-      </>
+        <option key={elem.name} value={elem.field}>{elem.name}</option>
     )
   })
   return (
@@ -82,6 +85,7 @@ const SetUpMenu = ({ difficultyFetch, setDifficulty, difficulty }) => {
 
 const Container = ({ difficultyFetch, setDifficultyFetch }) => {
   const [difficulty, setDifficulty] = useState(null)
+  const [coords, setCoords] = useState('')
 
   return (
     <div className="Container">
@@ -94,9 +98,10 @@ const Container = ({ difficultyFetch, setDifficultyFetch }) => {
         <Board
           difficulty={difficulty}
           setDifficultyFetch={setDifficultyFetch}
+          setCoords={setCoords}
         />
       ) : null}
-      <Table />
+      <Table coords={coords} />
     </div>
   )
 }
@@ -123,7 +128,17 @@ function App() {
           difficultyFetch={difficultyFetch}
           setDifficultyFetch={setDifficultyFetch}
         />
-      ) : null}
+      ) : (
+        <h1
+          style={{
+            display: `flex`,
+            justifyContent: 'center',
+            margin: '0px auto',
+          }}
+        >
+          Загрузка данных...
+        </h1>
+      )}
     </div>
   )
 }

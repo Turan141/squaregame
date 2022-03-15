@@ -2,21 +2,23 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Garamond ;
+
 }
 
 .App {
-  background-color: #88B04B;
+  background-color: #88b04b;
   height: 755px;
 }
 .Container {
   display: flex;
   position: relative;
   justify-content: center;
-  width: 700px;
-  height: 700px;
+  width: 40%;
+  height: 70%;
   flex-direction: column;
   align-items: center;
-  
+  left: 20%;
 }
 
 .SetUpMenu {
@@ -25,6 +27,7 @@
 .SetUpMenu select {
   padding: 10px;
   font-size: 1.2rem;
+  border-radius: 10px;
 }
 .SetUpMenu p {
   font-size: 1.2rem;
@@ -34,10 +37,12 @@
 }
 .SetUpMenu button {
   margin: 10px;
-  padding: 15px;
-  width: 150px;
+  padding: 10px;
+  width: 100px;
   border: none;
-  font-size: 1.2rem;
+  font-size: 22px;
+  font-weight: bolder;
+  border-radius: 20px;
 }
 .SetUpMenu button:hover {
   background-color: green;
@@ -59,8 +64,7 @@
   background-color: white;
   flex-wrap: wrap;
   border: 3px solid black;
-  transition: 1s ease;
-  transform: rotateY(180deg);
+  transition: 0.5s ease;
 }
 
 .blueCell {
@@ -69,15 +73,47 @@
   flex-wrap: wrap;
   border: 3px solid black;
   transition: 0.5s ease;
-  background-color: #34568B;
+  background-color: #34568b;
+  transform: scale(1.1);
 }
 
 .Hover {
   position: absolute;
-  width: 250px;
-  height: 80%;
-  border: 2px solid black;
+  width: 50%;
+  height: 70%;
+  border: 5px solid black;
+  border-radius: 20px;
   left: 100%;
-  top: 20%;
+  top: 30%;
   margin-left: 20px;
+  background-color: #fff;
+}
+.Hover h1 {
+  text-align: center;
+  align-items: center;
+  text-decoration: underline;
+  margin-bottom: 15%;
+}
+.Hover h2 {
+  text-align: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 2.3rem;
+}
+
+@media screen and (min-width: 300px) and (max-width: 600px) {
+  .Container {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .Board {
+    width: 300px;
+    height: 300px;
+  }
+
+  .Hover {
+    top: 80%;
+    left: 20%;
+    height: 40%;
+  }
 }
